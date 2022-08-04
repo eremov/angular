@@ -1,0 +1,5 @@
+<button class="button" *ngIf="buttonText; else elseBlock">{{buttonText}}</button>
+<ng-template #elseBlock>
+  <fa-icon class="icon" *ngIf="iconName === 'edit'" [icon]="faEdit"></fa-icon>
+  <fa-icon class="icon" *ngIf="iconName === 'remove'" [icon]="faTrash"></fa-icon>
+</ng-template>
