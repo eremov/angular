@@ -1,31 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
-import { ButtonComponent } from './components/button/button.component';
-import { InfoComponent } from './components/info/info.component';
-import { SearchComponent } from './components/search/search.component';
+import { HeaderComponent, ButtonComponent, InfoComponent, SearchComponent } from './components';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {CourseComponent} from "../course/course.component";
+import {CourseComponent} from "../features/course/course.component";
 
+const DECLARATIONS = [
+  HeaderComponent,
+  ButtonComponent,
+  InfoComponent,
+  SearchComponent,
+  CourseComponent,
+]
 
+const IMPORTS = [
+  CommonModule,
+  FontAwesomeModule
+]
+
+const EXPORTS = [...DECLARATIONS, ...IMPORTS];
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    ButtonComponent,
-    InfoComponent,
-    SearchComponent,
-    CourseComponent
-  ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
-  exports: [
-    HeaderComponent,
-    ButtonComponent,
-    InfoComponent,
-    CourseComponent
-  ]
+  declarations: DECLARATIONS,
+  imports: IMPORTS,
+  exports: EXPORTS
 })
-export class SharedModule { }
+export class SharedModule {
+
+}
+
