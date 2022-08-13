@@ -1,0 +1,25 @@
+.card {
+  display: grid;
+  width: 70%;
+  grid-template-columns: 80% 20%;
+  border: solid greenyellow;
+  padding: 20px;
+  margin: 25px auto 0;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.list-item {
+  margin-bottom: 10px;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+

@@ -1,0 +1,5 @@
+<app-course-card *ngFor="let card of cards" [card]="card">
+  <app-button [buttonText]="'Show course'"></app-button>
+  <app-button *ngIf="isEditable" [iconName]="'edit'"></app-button>
+  <app-button *ngIf="isEditable"  [iconName]="'remove'"></app-button>
+</app-course-card>
