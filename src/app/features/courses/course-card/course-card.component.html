@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="content">
+    <h3 class="title">{{card.title}}</h3>
+    <p class="description">{{card.description}}</p>
+  </div>
+  <div class="details">
+    <div class="about-section">
+      <ul class="list">
+        <li class="list-item"><b>Authors:</b> {{card.authors}}</li>
+        <li class="list-item"><b>Duration:</b> {{card.duration}}</li>
+        <li class="list-item"><b>Created:</b> {{formatDate(card.creationDate)}}</li>
+      </ul>
+    </div>
+    <div class="button-section">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

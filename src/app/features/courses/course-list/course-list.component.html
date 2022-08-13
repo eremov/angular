@@ -1,0 +1,17 @@
+<ng-template #empty>
+  <app-info [title]="'Your list is empty'"
+            [text]="'Please use the \'Add new course\' button to add your first course'">
+    <app-button [buttonText]="'Add new course'"></app-button>
+  </app-info>
+</ng-template>
+
+<ng-container *ngIf="cards.length; else empty">
+  <app-course-card *ngFor="let card of cards"
+              [card]="card">
+    <app-button [buttonText]="'Show course'"></app-button>
+    <app-button *ngIf="isEditable"
+                [iconName]="'edit'"></app-button>
+    <app-button *ngIf="isEditable"
+                [iconName]="'remove'"></app-button>
+  </app-course-card>
+</ng-container>

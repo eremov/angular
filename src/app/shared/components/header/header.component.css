@@ -1,0 +1,33 @@
+.header {
+  max-width: 100%;
+  min-height: 50px;
+  margin: 0 auto;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  border: solid red;
+}
+
+.header__logo {
+  width: 100%;
+  background-image: url('/assets/logo.svg');
+  background-repeat: no-repeat;
+}
+
+.header__user-info {
+  min-width: 160px;
+  display: inline-block;
+}
+
+.header__user-name {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.header__user-name:first-child {
+  margin-right: 15px;
+}
+
+
+
+

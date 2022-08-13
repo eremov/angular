@@ -1,0 +1,26 @@
+.button, .icon {
+  border: solid blueviolet;
+  height: 50px;
+  background: white;
+  font-size: 18px;
+}
+
+.icon {
+  min-width: 50px;
+  font-size: 40px;
+}
+
+.button:hover, .icon:hover{
+  border: solid greenyellow;
+}
+
+.button:focus, .icon:focus {
+  border: solid deeppink;
+}
+
+.button:active, .icon:active{
+  border: solid slategray;
+}
+
+
+
