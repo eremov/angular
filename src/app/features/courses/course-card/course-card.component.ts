@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Course} from "./course";
+import {formatDate} from '@angular/common'
 
 @Component({
   selector: 'app-course-card',
@@ -15,4 +16,7 @@ export class CourseCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  formatDate(date: Date){
+    return formatDate(date, 'dd.MM.yyyy', 'en_US')
+  }
 }

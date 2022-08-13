@@ -1,30 +1,26 @@
-import {formatDate} from '@angular/common'
-
 export class Course {
-  title: String | undefined;
-  description: String | undefined;
-  creationDate: String | undefined;
-  duration: String | undefined;
-  authors: String | undefined;
+  title: string;
+  description: string;
+  creationDate: Date;
+  duration: string;
+  authors: string;
 
 
-  constructor(title: String, description: String, creationDate: Date, duration: Number, authors: String[]) {
+  constructor(title: string, description: string, creationDate: Date, duration: number, authors: string[]) {
     this.title = title;
     this.description = description;
-    this.creationDate = formatDate(creationDate, 'dd.MM.yyyy', 'en_US')
+    this.creationDate = creationDate;
     this.duration = this.getDuration(duration);
     this.authors = authors.join(", ")
   }
 
-  getDuration(duration: Number) {
-    // @ts-ignore
+  getDuration(duration: number) {
     let hours = duration / 60;
     let minutes;
     if (Number.isInteger(hours)) {
       return hours + ":00 hours"
     } else {
       hours = Math.trunc(hours);
-      // @ts-ignore
       minutes = duration % 60;
       return hours + ":" + minutes + " hours";
     }
