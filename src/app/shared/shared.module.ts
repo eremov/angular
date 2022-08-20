@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent, ButtonComponent, InfoComponent, SearchComponent } from './components';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {EmailValidatorDirective} from "./email-validator.directive";
 
 const DECLARATIONS = [
   HeaderComponent,
   ButtonComponent,
   InfoComponent,
-  SearchComponent
+  SearchComponent,
+  EmailValidatorDirective
 ]
 
 const IMPORTS = [
