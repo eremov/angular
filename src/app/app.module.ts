@@ -7,10 +7,12 @@ import {CoursesModule} from "./features/courses/courses.module";
 import {SharedModule} from "./shared/shared.module";
 import {LoginModule} from "./features/login/login.module";
 import {RegistrationModule} from "./features/registration/registration.module";
+import { EditPageComponent } from './features/edit-page/edit-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditPageComponent
   ],
   imports: [
     BrowserModule,

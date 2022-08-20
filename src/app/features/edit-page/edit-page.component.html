@@ -1,0 +1,72 @@
+<form class="edit-form" [formGroup]="editForm">
+  <section>
+    <label for="title">Title</label><br>
+    <div class="title-section">
+      <input id="title" class="title-input" formControlName="title">
+      <app-button [buttonText]="'Create course'" class="create-button"></app-button>
+    </div>
+    <div class="error-message" *ngIf="title.invalid && (title.dirty || title.touched)">
+      <div *ngIf="title.errors?.['required']">
+        Title is required.
+      </div>
+      <div *ngIf="title.errors?.['minlength']">
+        Length of Title field should be more then 4 symbols
+      </div>
+      <br>
+    </div>
+  </section>
+  <section class="description">
+    <label for="description">Description</label>
+    <textarea id="description" class="description-area" formControlName="description"></textarea>
+    <div class="error-message" *ngIf="description.invalid && (description.dirty || description.touched)">
+      <div *ngIf="description.errors?.['required']">
+        description is required.
+      </div>
+      <div *ngIf="description.errors?.['minlength']">
+        Length of Description field should be more then 4 symbols
+      </div>
+      <br>
+    </div>
+  </section>
+  <section class="authors-section">
+    <div class="authors">
+      <div class="add-author">
+        <p class="block-header">Add authors</p>
+        <label for="name">Author name</label><br>
+        <input class="edit-input" type="text" id="name" formControlName="authorName">
+        <br>
+        <div class="add-author-button">
+          <app-button [buttonText]="'Create author'" (click)="addAuthor()"></app-button>
+        </div>
+      </div>
+      <div class="duration">
+        <p class="block-header">Duration</p>
+        <label for="duration">Duration</label><br>
+        <input class="edit-input" type="number" min="0" id="duration" formControlName="duration">
+        <div class="error-message" *ngIf="duration.invalid && (duration.dirty || duration.touched)">
+          <div *ngIf="duration.errors?.['min']">
+            Duration should be more then 0.
+          </div>
+          <br>
+        </div>
+        <br>
+        <p>Duration <b>{{editForm.get('duration')?.value | duration}}</b> hours</p>
+      </div>
+    </div>
+    <div class="authors-list">
+      <p class="block-header">Authors list</p>
+      <div class="added-authors">
+        <ng-container formArrayName="editForm.authors">
+          <ng-container *ngFor="let authorForm of authors.controls; let i = index">
+            <div class="added-author">
+              <p class="author-name">{{authorForm.get('name')?.value}}</p>
+              <app-button [buttonText]="'Delete author'" (click)="deleteAuthor(i)"></app-button>
+            </div>
+          </ng-container>
+        </ng-container>
+
+
+      </div>
+    </div>
+  </section>
+</form>
