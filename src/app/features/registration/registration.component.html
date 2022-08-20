@@ -1,1 +1,48 @@
-<p>registration works!</p>
+<div class="registration-form">
+  <form [formGroup]="registrationForm" #formDir="ngForm">
+    <h3>Registration</h3>
+    <label for="name" class="second-label">Name:</label><br>
+    <input id="name" placeholder="name" formControlName="name" type="text" class="reg-input" required>
+    <div class="error-message" *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors?.['required']">
+        Name is required.
+      </div>
+      <div *ngIf="name.errors?.['minlength']">
+        Length of Name field should be more then 4 symbols
+      </div>
+      <br>
+    </div>
+
+    <label for="email" class="second-label">Email:</label><br>
+    <input id="email" placeholder="email" formControlName="email" type="email" class="reg-input">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+      <div *ngIf="email.errors?.['required']">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors?.['wrongEmail']">
+        You are not admin!!!
+      </div>
+      <br>
+    </div>
+    <label for="password" class="second-label">Password:</label><br>
+    <input id="password" placeholder="password" formControlName="password" type="password" class="reg-input">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+      <div *ngIf="password.errors?.['required']">
+        Password is required.
+      </div>
+      <div *ngIf="password.errors?.['minlength']">
+        Length of password field should be more then 6 symbols
+      </div>
+      <br>
+    </div>
+
+
+    <div class="submit">
+      <app-button buttonText="Registration"></app-button>
+    </div>
+  </form>
+
+  <div class="link-section">
+    <p>If you have an account you can <a href="#">Login</a></p>
+  </div>
+</div>
