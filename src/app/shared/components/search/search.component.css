@@ -1,0 +1,14 @@
+.search-form {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-input {
+  width: 85%;
+  font-size: 24px;
+}
+
+.search-button {
+  width: 10%
+}

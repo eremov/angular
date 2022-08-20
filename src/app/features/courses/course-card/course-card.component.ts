@@ -15,8 +15,4 @@ export class CourseCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  formatDate(date: Date){
-    return formatDate(date, 'dd.MM.yyyy', 'en_US')
-  }
 }

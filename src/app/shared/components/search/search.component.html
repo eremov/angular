@@ -1,1 +1,4 @@
-<p>search works!</p>
+<form #searchForm="ngForm" class="search-form">
+  <input placeholder="{{placeHolder}}" class="search-input" #searchFraze>
+  <app-button (click)="sendSearchFraze(searchFraze.value)" [buttonText]="'Search'" class="search-button"></app-button>
+</form>
