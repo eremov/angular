@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RegistrationComponent} from "./registration.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
+import {RegistrationRoutingModule} from "./registration-routing.module";
 
 @NgModule({
   declarations: [RegistrationComponent],
@@ -13,7 +14,8 @@ import {SharedModule} from "../../shared/shared.module";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RegistrationRoutingModule
   ]
 })
 export class RegistrationModule { }
