@@ -6,22 +6,28 @@ import {CourseCardComponent} from "./course-card/course-card.component";
 
 const routes: Routes = [
   {
-    path: 'edit/:id',
-    component: EditPageComponent
-  },
-  {
-    path: 'add',
-    component: EditPageComponent
-  },
-  {
     path: '',
-    component: CoursesComponent
-  },
-  {
-    path: ':id',
-    component: CourseCardComponent
+    children: [
+      {
+        path: '',
+        component: CoursesComponent
+      },
+      {
+        path: 'edit/:id',
+        component: EditPageComponent,
+      },
+      {
+        path: 'add',
+        component: EditPageComponent,
+      },
+      {
+        path: ':id',
+        component: CourseCardComponent,
+      }
+    ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

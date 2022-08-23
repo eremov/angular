@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../auth/services/auth.service";
+import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -8,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private auth: AuthService) {
+
+  }
 
   ngOnInit(): void {
+  }
+
+  submitForm(email: NgModel, pass: NgModel) {
+    this.auth.login(email.viewModel, pass.viewModel);
   }
 
 }

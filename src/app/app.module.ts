@@ -8,6 +8,7 @@ import {SharedModule} from "./shared/shared.module";
 import {LoginModule} from "./features/login/login.module";
 import {RegistrationModule} from "./features/registration/registration.module";
 import { EditPageComponent } from './features/courses/edit-page/edit-page.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,13 +17,14 @@ import { EditPageComponent } from './features/courses/edit-page/edit-page.compon
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CoursesModule,
     SharedModule,
     LoginModule,
     RegistrationModule
   ],
-  providers: [],
+  providers: [Window],
   bootstrap: [AppComponent]
 })
 export class AppModule {
