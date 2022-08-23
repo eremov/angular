@@ -40,8 +40,7 @@ export class AuthService {
   }
 
   logout() {
-    let headers = new HttpHeaders().set('Authorization', this.sessionStorageService.getToken());
-    this.http.delete<string>('http://localhost:4000/logout',{'headers': headers})
+    this.http.delete<string>('http://localhost:4000/logout')
       .subscribe(
         data => {
           this.sessionStorageService.deleteToken();
