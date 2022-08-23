@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AuthorsService} from "./authors.service";
 import {BehaviorSubject, Observable} from "rxjs";
-import {Authors} from "./author";
+import {Author} from "./author";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class AuthorsStoreService {
   private isLoading$$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isLoading$: Observable<boolean> = this.isLoading$$.asObservable();
 
-  private authors$$: BehaviorSubject<Authors[]> = new BehaviorSubject<Authors[]>([]);
-  public authors$: Observable<Authors[]> = this.authors$$.asObservable();
+  private authors$$: BehaviorSubject<Author[]> = new BehaviorSubject<Author[]>([]);
+  public authors$: Observable<Author[]> = this.authors$$.asObservable();
 
 
   constructor(private authorsService: AuthorsService) { }

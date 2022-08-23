@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, take} from "rxjs";
-import {Authors} from "./author";
+import {Author} from "./author";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,6 @@ export class AuthorsService {
 
 interface AuthorResponse {
   successful: boolean;
-  result: Authors[]
+  result: Author[]
 }
 
