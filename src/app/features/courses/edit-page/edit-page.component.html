@@ -3,7 +3,8 @@
     <label for="title">Title</label><br>
     <div class="title-section">
       <input id="title" class="title-input" formControlName="title">
-      <app-button [buttonText]="'Create course'" class="create-button"></app-button>
+      <app-button *ngIf="isEditMode" (click)="updateCourse()" [buttonText]="'Update course'" class="create-button"></app-button>
+      <app-button *ngIf="!isEditMode" (click)="createCourse()" [buttonText]="'Create course'" class="create-button"></app-button>
     </div>
     <div class="error-message" *ngIf="title.invalid && (title.dirty || title.touched)">
       <div *ngIf="title.errors?.['required']">

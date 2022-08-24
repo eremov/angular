@@ -34,7 +34,6 @@ export class CoursesStoreService {
 
   getCourse(id: string) {
     return this.courseService.getCourse(id);
-
   }
 
   deleteCourse(id: string) {

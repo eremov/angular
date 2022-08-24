@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   headerButton: string;
   loginButtonText: string = 'Login';
   logoutButtonText: string = 'Logout'
+  isAdmin: boolean = false;
 
   constructor(private authService: AuthService, private userStoreService: UserStoreService, private router: Router) {
 
@@ -29,6 +30,11 @@ export class AppComponent implements OnInit {
           }
         )
         this.headerButton = this.logoutButtonText;
+        this.userStoreService.isAdmin$.subscribe(isAdmin => {
+          if (isAdmin) {
+            this.isAdmin = isAdmin;
+          }
+        })
       } else {
         this.userName = '';
         this.headerButton = this.loginButtonText;
@@ -43,5 +49,9 @@ export class AppComponent implements OnInit {
     if (this.headerButton === 'Logout') {
       this.authService.logout();
     }
+  }
+
+  redirectToNewCoursePage() {
+    this.router.navigate(['/courses/add']);
   }
 }

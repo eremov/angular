@@ -26,8 +26,8 @@ export class CoursesService {
     })
   }
 
-  editCourse(title: string, description: string, duration: number, authors: string[], id: string) {
-    return this.http.put<any>('http://localhost:4000/courses/add/' + id, {
+  editCourse(title: string, description: string, duration: number, authors: string[], id: string | null) {
+    return this.http.put<any>('http://localhost:4000/courses/' + id, {
       title: title,
       description: description,
       duration: duration,

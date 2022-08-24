@@ -12,25 +12,19 @@ import {CoursesStoreService} from "../../../services/courses-store.service";
   styleUrls: ['./course-card.component.css']
 })
 export class CourseCardComponent implements OnInit {
-  isViewExistingMode: boolean = false;
-  existingCard: Course;
 
   @Input() card: Course;
 
-  courseId: string;
+  courseId: string | null;
 
   constructor(private route: ActivatedRoute, private coursesStoreService: CoursesStoreService) {
 
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.courseId = params['id'];
-    });
-
+    this.courseId = this.route.snapshot.paramMap.get('id');
     if (this.courseId) {
-      this.isViewExistingMode = true;
-      //Tod present current card
+      this.coursesStoreService.getCourse(this.courseId).subscribe(data => this.card = data)
     }
   }
 }

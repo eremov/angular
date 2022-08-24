@@ -28,7 +28,7 @@ export class CourseListComponent implements OnInit {
   }
 
   routeToEditCourse(id: string) {
-
+    this.router.navigate(['/courses/edit/'+id])
   }
 
   deleteCourse(id: string) {

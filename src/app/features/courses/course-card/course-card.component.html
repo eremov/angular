@@ -1,14 +1,14 @@
 <div class="card">
   <div class="content">
-    <h3 class="title">{{existingCard.title}}</h3>
-    <p class="description">{{existingCard.description}}</p>
+    <h3 class="title">{{card.title}}</h3>
+    <p class="description">{{card.description}}</p>
   </div>
   <div class="details">
     <div class="about-section">
       <ul class="list">
-        <li class="list-item"><b>Authors:</b> {{existingCard.authors | stringJoiner: ', ' }}</li>
-        <li class="list-item"><b>Duration:</b> {{existingCard.duration | duration}} hours</li>
-        <li class="list-item"><b>Created:</b> {{existingCard.creationDate | creationDate}}</li>
+        <li class="list-item"><b>Authors:</b> {{card.authors | stringJoiner: ', ' }}</li>
+        <li class="list-item"><b>Duration:</b> {{card.duration | duration}} hours</li>
+        <li class="list-item"><b>Created:</b> {{card.creationDate | creationDate}}</li>
       </ul>
     </div>
     <div class="button-section">

@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CoursesStoreService} from "../../../services/courses-store.service";
+import {Course} from "../../../services/course";
+import {CoursesService} from "../../../services/courses.service";
 
 @Component({
   selector: 'app-edit-page',
@@ -7,7 +11,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
   styleUrls: ['./edit-page.component.css']
 })
 export class EditPageComponent implements OnInit {
-
+  isEditMode: boolean = false;
+  courseId: string | null = '';
   public formData = {
     title: '',
     description: '',
@@ -18,9 +23,7 @@ export class EditPageComponent implements OnInit {
 
   editForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private coursesService: CoursesService, private router: Router) {
     this.editForm = new FormGroup({
       title: new FormControl(this.formData.title, [
         Validators.required,
@@ -42,15 +45,39 @@ export class EditPageComponent implements OnInit {
     })
   }
 
-  get title() { return this.editForm.get('title')!; }
+  ngOnInit(): void {
+    this.courseId = this.route.snapshot.paramMap.get('id');
 
-  get description() { return this.editForm.get('description')!; }
+    if (this.courseId) {
+      this.isEditMode = true;
+      this.coursesService.getCourse(this.courseId).subscribe(data => {
+        this.title?.setValue(data.title);
+        this.description?.setValue(data.description);
+        this.duration?.setValue(data.duration);
+        this.authors?.setValue(data.authors);
+      })
+    }
+  }
 
-  get duration() { return this.editForm.get('duration')!; }
+  get title() {
+    return this.editForm.get('title')!;
+  }
 
-  get authorName() { return this.editForm.get('authorName')!; }
+  get description() {
+    return this.editForm.get('description')!;
+  }
 
-  get authors() { return this.editForm.controls['authors'] as FormArray; }
+  get duration() {
+    return this.editForm.get('duration')!;
+  }
+
+  get authorName() {
+    return this.editForm.get('authorName')!;
+  }
+
+  get authors() {
+    return this.editForm.controls['authors'] as FormArray;
+  }
 
   addAuthor() {
     const authorForm = this.fb.group({
@@ -63,4 +90,21 @@ export class EditPageComponent implements OnInit {
     this.authors.removeAt(authorIndex);
   }
 
+  updateCourse() {
+    this.coursesService.editCourse(this.editForm.value.title, this.editForm.value.description,
+      this.editForm.value.duration, [], this.courseId).subscribe(data =>
+      {
+        this.router.navigate(['/courses']);
+      }
+    )
+  }
+
+  createCourse() {
+    this.coursesService.createCourse(this.editForm.value.title, this.editForm.value.description,
+      this.editForm.value.duration, []).subscribe(data =>
+      {
+        this.router.navigate(['/courses']);
+      }
+    )
+  }
 }

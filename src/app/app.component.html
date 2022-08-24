@@ -2,4 +2,5 @@
   <p class="header-name">{{userName}}</p>
   <app-button (click)="buttonClickEvent()" class="header-button" [buttonText]="headerButton"></app-button>
 </app-header>
+<div *ngIf="isAdmin" class="new-course-button"><app-button (click)="redirectToNewCoursePage()" class="header-button" [buttonText]="'Create new course'"></app-button></div>
 <router-outlet></router-outlet>
