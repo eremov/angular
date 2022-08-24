@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../auth/services/auth.service";
 import {NgModel} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {NgModel} from "@angular/forms";
 export class LoginComponent implements OnInit {
 
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
 
   }
 
@@ -19,6 +20,10 @@ export class LoginComponent implements OnInit {
 
   submitForm(email: NgModel, pass: NgModel) {
     this.auth.login(email.viewModel, pass.viewModel);
+    this.router.navigate(['/courses']);
   }
 
+  routeToRegistrationPage() {
+    this.router.navigate(['/registration']);
+  }
 }

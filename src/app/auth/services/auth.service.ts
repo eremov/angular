@@ -24,7 +24,7 @@ export class AuthService {
         "password": password
       }
     ).subscribe(data => {
-      this.sessionStorageService.setToken(data.result.split(' ')[1]);
+      this.sessionStorageService.setToken(data.result);
       this.isAuthorized$$.next(true);
     })
   }
@@ -36,7 +36,9 @@ export class AuthService {
         "email": email,
         "password": password
       }
-    )
+    ).subscribe(res => {
+      console.log("reg data was sended")
+    })
   }
 
   logout() {

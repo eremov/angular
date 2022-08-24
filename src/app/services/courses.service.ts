@@ -36,11 +36,11 @@ export class CoursesService {
   }
 
   getCourse(id: string) {
-    return this.http.get<Course>('http://localhost:4000/courses/' + id)
+    return this.http.get<CourseResponse>('http://localhost:4000/courses/' + id).pipe(map(response => response.result), take(1))
   }
 
   deleteCourse(id: string) {
-    return this.http.delete<any>('http://localhost:4000/courses/' + id)
+    return this.http.delete<string>('http://localhost:4000/courses/' + id);
   }
 
   searchCoursesByTitle(title: string) {
@@ -57,5 +57,10 @@ export class CoursesService {
 
 interface CoursesResponse {
   successful: boolean;
-  result: Course[]
+  result: Course[];
+}
+
+interface CourseResponse {
+  successful: boolean;
+  result: Course;
 }

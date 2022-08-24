@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from "../course-card/course";
+import {CoursesStoreService} from "../../../services/courses-store.service";
+import {Course} from "../../../services/course";
+import {UserStoreService} from "../../../user/services/user-store.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-course-list',
@@ -8,20 +11,29 @@ import {Course} from "../course-card/course";
 })
 export class CourseListComponent implements OnInit {
   isEditable: Boolean = true;
-  cards: Course[] =
-    [new Course("JavaScript", `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a type specimen book. It has survived
-                    not only five centuries, but also the leap into electronic typesetting, remaining essentially u
-                    nchanged.`, new Date("8/3/2021"), 160, ["Vasiliy Dobkin", "Nicolas Kim"],),
-      new Course("Angular",`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a type specimen book.`,
-        new Date("10/11/2020"), 210, ["Anna Sidorenko", "Valentina Larina"],)]
-
-  constructor() { }
+  cards: Course[];
+  constructor(private coursesStore: CoursesStoreService, private userStoreService: UserStoreService, private router: Router, private coursesStoreService: CoursesStoreService) {
+    coursesStore.getAll();
+    coursesStore.course$.subscribe(cards => {
+      this.cards = cards;
+    })
+    userStoreService.isAdmin$.subscribe(value => this.isEditable = value);
+  }
 
   ngOnInit(): void {
   }
+
+  routeToShowCourse(id: string) {
+    this.router.navigate(['/courses/'+id])
+  }
+
+  routeToEditCourse(id: string) {
+
+  }
+
+  deleteCourse(id: string) {
+    this.coursesStoreService.deleteCourse(id);
+  }
+
 
 }

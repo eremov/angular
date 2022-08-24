@@ -33,11 +33,17 @@ export class CoursesStoreService {
   }
 
   getCourse(id: string) {
-    this.courseService.getCourse(id);
+    return this.courseService.getCourse(id);
+
   }
 
   deleteCourse(id: string) {
-    this.courseService.deleteCourse(id);
+    this.courseService.deleteCourse(id).subscribe(result =>
+    {
+      console.log('result' + result);
+      this.getAll();
+    });
+
   }
 
   searchCoursesByTitle(title: string) {

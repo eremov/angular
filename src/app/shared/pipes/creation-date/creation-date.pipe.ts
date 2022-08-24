@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {formatDate} from "@angular/common";
 
 @Pipe({
@@ -6,8 +6,9 @@ import {formatDate} from "@angular/common";
 })
 export class CreationDatePipe implements PipeTransform {
 
-  transform(value: Date, ...args: unknown[]): string {
-      return formatDate(value, 'dd.MM.YYYY', 'en_US')
+  transform(value: string, ...args: unknown[]): string {
+    const dateValue = new Date(value);
+    return formatDate(dateValue, 'dd.MM.YYYY', 'en_US')
   }
 
 }

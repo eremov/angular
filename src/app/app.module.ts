@@ -8,7 +8,8 @@ import {SharedModule} from "./shared/shared.module";
 import {LoginModule} from "./features/login/login.module";
 import {RegistrationModule} from "./features/registration/registration.module";
 import { EditPageComponent } from './features/courses/edit-page/edit-page.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
+import {TokenInterceptor} from "./auth/interceptors/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     LoginModule,
     RegistrationModule
   ],
-  providers: [Window],
+  providers: [Window, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

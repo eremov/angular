@@ -13,7 +13,7 @@ export class AuthorsService {
   }
 
   getAll() {
-    return this.http.get<AuthorResponse>('http://localhost:4000/authors/all')
+    return this.http.get<AuthorsResponse>('http://localhost:4000/authors/all')
       .pipe(map(response => response.result), take(1))
   }
 
@@ -22,8 +22,13 @@ export class AuthorsService {
   }
 }
 
+interface AuthorsResponse {
+  successful: boolean;
+  result: Author[];
+}
+
 interface AuthorResponse {
   successful: boolean;
-  result: Author[]
+  result: Author;
 }
 

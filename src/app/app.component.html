@@ -1,5 +1,5 @@
 <app-header>
-  <p class="header-name">Dzmitry</p>
-  <app-button class="header-button" [buttonText]="'Logout'"></app-button>
+  <p class="header-name">{{userName}}</p>
+  <app-button (click)="buttonClickEvent()" class="header-button" [buttonText]="headerButton"></app-button>
 </app-header>
 <router-outlet></router-outlet>

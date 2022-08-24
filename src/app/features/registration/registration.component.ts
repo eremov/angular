@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
-  ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
   Validators
 } from "@angular/forms";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Registration} from "./registration";
+import {Router} from "@angular/router";
+import {AuthService} from "../../auth/services/auth.service";
 
 @Component({
   selector: 'app-registration',
@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   public registrationData = { name: '', password: '', email: '' };
   registrationForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
 
   }
 
@@ -55,5 +55,13 @@ export class RegistrationComponent implements OnInit {
   get email() { return this.registrationForm.get('email')!; }
 
   get password() { return this.registrationForm.get('password')!; }
+
+  routeToLoginPage() {
+    this.router.navigate(['/login']);
+  }
+
+  submitRegistrationData() {
+    this.authService.register(this.registrationForm.value.name, this.registrationForm.value.email, this.registrationForm.value.password);
+  }
 
 }

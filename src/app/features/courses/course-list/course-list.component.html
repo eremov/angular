@@ -8,10 +8,10 @@
 <ng-container *ngIf="cards.length; else empty">
   <app-course-card *ngFor="let card of cards"
               [card]="card">
-    <app-button [buttonText]="'Show course'"></app-button>
-    <app-button *ngIf="isEditable"
+    <app-button (click)="routeToShowCourse(card.id)" [buttonText]="'Show course'"></app-button>
+    <app-button (click)="routeToEditCourse(card.id)" *ngIf="isEditable"
                 [iconName]="'edit'"></app-button>
-    <app-button *ngIf="isEditable"
+    <app-button (click)="deleteCourse(card.id)" *ngIf="isEditable"
                 [iconName]="'remove'"></app-button>
   </app-course-card>
 </ng-container>
