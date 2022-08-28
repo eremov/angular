@@ -4,12 +4,14 @@ import {CoursesComponent} from "./courses.component";
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import {CoursesRoutingModule} from "./courses-routing.module";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [CoursesComponent, CourseCardComponent, CourseListComponent],
   imports: [
     SharedModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
+    CommonModule
   ],
   exports: [
     CoursesComponent

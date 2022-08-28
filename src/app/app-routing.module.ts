@@ -4,8 +4,6 @@ import {CoursesComponent} from "./features/courses/courses.component";
 import {AuthorizedGuard} from "./auth/guards/authorized.guard";
 import {NotAuthorizedGuard} from "./auth/guards/not-authorized.guard";
 import {AdminGuard} from "./auth/guards/admin.guard";
-import {EditPageComponent} from "./features/courses/edit-page/edit-page.component";
-import {CourseComponent} from "./features/course/course.component";
 
 const routes: Routes = [
   {

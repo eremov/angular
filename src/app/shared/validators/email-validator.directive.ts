@@ -10,15 +10,16 @@ export class EmailValidatorDirective implements Validator{
   constructor() { }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return this.appCheckEmail ? this.emailValidator(new RegExp(this.appCheckEmail, 'i'))(control)
+    return this.appCheckEmail ? EmailValidatorDirective.emailValidator(new RegExp(this.appCheckEmail, 'i'))(control)
       : null;
   }
 
-  emailValidator(nameRe: RegExp): ValidatorFn {
+  public static emailValidator(nameRe: RegExp): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const forbidden = nameRe.test(control.value);
       return forbidden ? {wrongEmail: {value: control.value}} : null;
     };
   }
+
 
 }

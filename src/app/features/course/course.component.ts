@@ -8,7 +8,7 @@ import {CoursesService} from "../../services/courses.service";
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css']
 })
-export class CourseComponent implements OnInit {
+export class CourseComponent {
 
   isEditMode: boolean = false;
   courseId: string | null = '';
@@ -42,9 +42,7 @@ export class CourseComponent implements OnInit {
         Validators.min(0)
       ]),
     })
-  }
 
-  ngOnInit(): void {
     this.courseId = this.route.snapshot.paramMap.get('id');
 
     if (this.courseId) {

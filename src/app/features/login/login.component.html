@@ -2,7 +2,7 @@
   <h3>Login</h3>
   <form #loginForm="ngForm">
     <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" placeholder="Enter email" class="login-input" ngModel required #email="ngModel" appCheckEmail="admin@localhost"><br>
+    <input type="email" id="email" name="email" placeholder="Enter email" class="login-input" ngModel required #email="ngModel" appCheckEmail="admin@localhost" email><br>
 
     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
       <div *ngIf="email.errors?.['required']">
@@ -10,6 +10,9 @@
       </div>
       <div *ngIf="email.errors?.['wrongEmail']">
         You are not admin!!!
+      </div>
+      <div *ngIf="email.errors?.['email']">
+        Invalid email
       </div>
       <br>
     </div>

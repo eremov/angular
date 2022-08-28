@@ -9,6 +9,7 @@ import {
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth/services/auth.service";
+import {EmailValidatorDirective} from "../../shared/validators/email-validator.directive";
 
 @Component({
   selector: 'app-registration',
@@ -24,13 +25,6 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  emailValidator(nameRe: RegExp): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const forbidden = nameRe.test(control.value);
-      return forbidden ? {wrongEmail: {value: control.value}} : null;
-    };
-  }
-
   ngOnInit(): void {
     this.registrationForm = new FormGroup({
       name: new FormControl(this.registrationData.name, [
@@ -40,7 +34,7 @@ export class RegistrationComponent implements OnInit {
       email: new FormControl(this.registrationData.name, [
         Validators.required,
         Validators.minLength(4),
-        this.emailValidator(new RegExp("admin", 'i'))
+        EmailValidatorDirective.emailValidator(new RegExp("admin", 'i'))
       ]),
       password: new FormControl(this.registrationData.password, [
         Validators.required,
