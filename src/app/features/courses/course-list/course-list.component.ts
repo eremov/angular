@@ -12,23 +12,16 @@ import {Router} from "@angular/router";
 export class CourseListComponent implements OnInit {
   isEditable: Boolean = true;
   cards: Course[];
-  constructor(private coursesStore: CoursesStoreService, private userStoreService: UserStoreService, private router: Router, private coursesStoreService: CoursesStoreService) {
-    coursesStore.getAll();
-    coursesStore.course$.subscribe(cards => {
-      this.cards = cards;
-    })
-    userStoreService.isAdmin$.subscribe(value => this.isEditable = value);
+  constructor(private coursesStore: CoursesStoreService, private userStoreService: UserStoreService,
+              private router: Router, private coursesStoreService: CoursesStoreService) {
   }
 
   ngOnInit(): void {
-  }
-
-  routeToShowCourse(id: string) {
-    this.router.navigate(['/courses/'+id])
-  }
-
-  routeToEditCourse(id: string) {
-    this.router.navigate(['/course/edit/'+id])
+    this.coursesStore.getAll();
+    this.coursesStore.course$.subscribe(cards => {
+      this.cards = cards;
+    })
+    this.userStoreService.isAdmin$.subscribe(value => this.isEditable = value);
   }
 
   deleteCourse(id: string) {

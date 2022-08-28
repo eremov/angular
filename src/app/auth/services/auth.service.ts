@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {SessionStorageService} from "./session-storage.service";
 import {BehaviorSubject, Observable} from "rxjs";
+import {UserStoreService} from "../../user/services/user-store.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   sessionStorageService: SessionStorageService;
 
-  constructor(private http: HttpClient, private sessionStorage: SessionStorageService) {
+  constructor(private http: HttpClient, private sessionStorage: SessionStorageService, private userStoreService: UserStoreService) {
     this.sessionStorageService = sessionStorage;
   }
 
@@ -47,6 +48,8 @@ export class AuthService {
         data => {
           this.sessionStorageService.deleteToken();
           this.isAuthorized$$.next(false);
+          this.userStoreService.logout();
+          this.userStoreService
         },
         (err: HttpErrorResponse) => console.log(`Got error: ${err}`)
       );

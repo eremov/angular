@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {map, take} from "rxjs";
-import {Course} from "./course";
+import {Course, CourseModel} from "./course";
 
 @Injectable({
   providedIn: 'root'
@@ -17,21 +17,22 @@ export class CoursesService {
       .pipe(map(response => response.result), take(1))
   }
 
-  createCourse(title: string, description: string, duration: number, authors: string[]) {
+  createCourse(course: CourseModel) {
     return this.http.post<any>('http://localhost:4000/courses/add', {
-      title: title,
-      description: description,
-      duration: duration,
-      authors: authors
+      title: course.title,
+      description: course.description,
+      duration: course.duration,
+      authors: course.authors,
+      creationDate: new Date()
     })
   }
 
-  editCourse(title: string, description: string, duration: number, authors: string[], id: string | null) {
-    return this.http.put<any>('http://localhost:4000/courses/' + id, {
-      title: title,
-      description: description,
-      duration: duration,
-      authors: authors
+  editCourse(course: CourseModel) {
+    return this.http.put<any>('http://localhost:4000/courses/' + course.id, {
+      title: course.title,
+      description: course.description,
+      duration: course.duration,
+      authors: course.authors
     })
   }
 

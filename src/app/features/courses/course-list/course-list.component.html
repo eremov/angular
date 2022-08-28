@@ -8,9 +8,9 @@
 <ng-container *ngIf="cards.length; else empty">
   <app-course-card *ngFor="let card of cards"
               [card]="card">
-    <app-button (click)="routeToShowCourse(card.id)" [buttonText]="'Show course'"></app-button>
-    <app-button (click)="routeToEditCourse(card.id)" *ngIf="isEditable"
-                [iconName]="'edit'"></app-button>
+    <a [routerLink]="'/courses/'+card.id"><app-button [buttonText]="'Show course'"></app-button></a>
+    <a [routerLink]="'/course/edit/'+card.id"><app-button *ngIf="isEditable"
+                [iconName]="'edit'"></app-button></a>
     <app-button (click)="deleteCourse(card.id)" *ngIf="isEditable"
                 [iconName]="'remove'"></app-button>
   </app-course-card>

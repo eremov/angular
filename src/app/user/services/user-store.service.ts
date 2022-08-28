@@ -22,4 +22,9 @@ export class UserStoreService {
       this.isAdmin$$.next(user.role === 'admin');
     })
   }
+
+  logout() {
+    this.name$$.next('');
+    this.isAdmin$$.next(false);
+  }
 }

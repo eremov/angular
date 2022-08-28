@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./auth/services/auth.service";
 import {UserStoreService} from "./user/services/user-store.service";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  userName: Observable<string> = this.userStoreService.name$;
+  isAdmin: Observable<boolean> = this.userStoreService.isAdmin$;
+
   title = 'courses-app';
-  userName: string;
   headerButton: string;
   loginButtonText: string = 'Login';
   logoutButtonText: string = 'Logout'
-  isAdmin: boolean = false;
 
   constructor(private authService: AuthService, private userStoreService: UserStoreService, private router: Router) {
 
@@ -24,19 +26,8 @@ export class AppComponent implements OnInit {
     this.authService.isAuthorized$.subscribe(value => {
       if (value) {
         this.userStoreService.getUser();
-        this.userStoreService.name$.subscribe(
-          name => {
-            this.userName = name;
-          }
-        )
         this.headerButton = this.logoutButtonText;
-        this.userStoreService.isAdmin$.subscribe(isAdmin => {
-          if (isAdmin) {
-            this.isAdmin = isAdmin;
-          }
-        })
       } else {
-        this.userName = '';
         this.headerButton = this.loginButtonText;
       }
     })
@@ -49,9 +40,5 @@ export class AppComponent implements OnInit {
     if (this.headerButton === 'Logout') {
       this.authService.logout();
     }
-  }
-
-  redirectToNewCoursePage() {
-    this.router.navigate(['/course/add']);
   }
 }

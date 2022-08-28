@@ -1,6 +1,8 @@
 <app-header>
-  <p class="header-name">{{userName}}</p>
+  <p class="header-name">{{userName | async}}</p>
   <app-button (click)="buttonClickEvent()" class="header-button" [buttonText]="headerButton"></app-button>
 </app-header>
-<div *ngIf="isAdmin" class="new-course-button"><app-button (click)="redirectToNewCoursePage()" class="header-button" [buttonText]="'Create new course'"></app-button></div>
+<div *ngIf="isAdmin | async" class="new-course-button"><a [routerLink]="['/course/add']">
+  <app-button class="header-button" [buttonText]="'Create new course'"></app-button>
+</a></div>
 <router-outlet></router-outlet>

@@ -7,7 +7,8 @@ import {formatDate} from "@angular/common";
 export class CreationDatePipe implements PipeTransform {
 
   transform(value: string): string {
-    const dateValue = new Date(value);
+    const dateValues = value.split('/')
+    const dateValue = new Date(dateValues[1] + '-' + dateValues[0] + '-' + dateValues[2]);
     return formatDate(dateValue, 'dd.MM.YYYY', 'en_US')
   }
 

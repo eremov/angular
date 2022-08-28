@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {Course} from "./course";
+import {Course, CourseModel} from "./course";
 import {CoursesService} from "./courses.service";
 
 @Injectable({
@@ -24,12 +24,12 @@ export class CoursesStoreService {
     })
   }
 
-  createCourse(title: string, description: string, duration: number, authors: string[]) {
-    this.courseService.createCourse(title, description, duration, authors);
+  createCourse(course: CourseModel) {
+    this.courseService.createCourse(course);
   }
 
-  editCourse(title: string, description: string, duration: number, authors: string[], id: string) {
-    this.courseService.editCourse(title, description, duration, authors, id);
+  editCourse(course: CourseModel) {
+    this.courseService.editCourse(course);
   }
 
   getCourse(id: string) {

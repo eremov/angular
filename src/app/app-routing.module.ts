@@ -27,8 +27,9 @@ const routes: Routes = [
     loadChildren: () => import('../app/features/course/course.module').then(m => m.CourseModule),
   },
   {
-    path: '',
-    component: CoursesComponent
+    path: '**',
+    canLoad: [AuthorizedGuard],
+    loadChildren: () => import('../app/features/courses/courses.module').then(m => m.CoursesModule),
   }
 ];
 

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CoursesService} from "../../services/courses.service";
+import {Course, CourseModel} from "../../services/course";
 
 @Component({
   selector: 'app-course',
@@ -12,13 +13,7 @@ export class CourseComponent {
 
   isEditMode: boolean = false;
   courseId: string | null = '';
-  public formData = {
-    title: '',
-    description: '',
-    authorName: '',
-    authors: [],
-    duration: 0,
-  }
+  public formData: CourseModel = new CourseModel();
 
   editForm: FormGroup;
 
@@ -48,10 +43,12 @@ export class CourseComponent {
     if (this.courseId) {
       this.isEditMode = true;
       this.coursesService.getCourse(this.courseId).subscribe(data => {
-        this.title?.setValue(data.title);
-        this.description?.setValue(data.description);
-        this.duration?.setValue(data.duration);
-        this.authors?.setValue(data.authors);
+        this.editForm.patchValue({
+          title: data.title,
+          description: data.description,
+          duration: data.duration,
+          authors: data.authors
+        });
       })
     }
   }
@@ -88,18 +85,27 @@ export class CourseComponent {
   }
 
   updateCourse() {
-    this.coursesService.editCourse(this.editForm.value.title, this.editForm.value.description,
-      this.editForm.value.duration, [], this.courseId).subscribe(data =>
-      {
+    const course: CourseModel = new CourseModel();
+    course.title = this.editForm.value.title;
+    course.description = this.editForm.value.description;
+    course.duration = this.editForm.value.duration;
+    course.id = this.courseId ?? '';
+    course.authors = [];
+
+    this.coursesService.editCourse(course).subscribe(data => {
         this.router.navigate(['/courses']);
       }
     )
   }
 
   createCourse() {
-    this.coursesService.createCourse(this.editForm.value.title, this.editForm.value.description,
-      this.editForm.value.duration, []).subscribe(data =>
-      {
+    const course: CourseModel = new CourseModel();
+    course.title = this.editForm.value.title;
+    course.description = this.editForm.value.description;
+    course.duration = this.editForm.value.duration;
+    course.id = this.courseId ?? '';
+    course.authors = [];
+    this.coursesService.createCourse(course).subscribe(data => {
         this.router.navigate(['/courses']);
       }
     )
