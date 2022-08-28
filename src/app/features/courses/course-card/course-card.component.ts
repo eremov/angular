@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Course} from "./course";
-import {formatDate} from '@angular/common'
+import {Course} from "../../../services/course";
+import {AuthorsStoreService} from "../../../services/authors-store.service";
+import {filter, map} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CoursesService} from "../../../services/courses.service";
+import {CoursesStoreService} from "../../../services/courses-store.service";
 
 @Component({
   selector: 'app-course-card',
@@ -11,8 +15,16 @@ export class CourseCardComponent implements OnInit {
 
   @Input() card: Course;
 
-  constructor() { }
+  courseId: string | null;
+
+  constructor(private route: ActivatedRoute, private coursesStoreService: CoursesStoreService) {
+
+  }
 
   ngOnInit(): void {
+    this.courseId = this.route.snapshot.paramMap.get('id');
+    if (this.courseId) {
+      this.coursesStoreService.getCourse(this.courseId).subscribe(data => this.card = data)
+    }
   }
 }

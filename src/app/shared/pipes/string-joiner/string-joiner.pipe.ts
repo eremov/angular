@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StringJoinerPipe implements PipeTransform {
 
-  transform(value: string[], ...args: string[]): string {
-    return value.join(args[0]);
+  transform(value: string[], separator: string = ' '): string {
+    return value.join(separator);
   }
 
 }

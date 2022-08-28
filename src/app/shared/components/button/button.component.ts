@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-button',
@@ -13,9 +14,10 @@ export class ButtonComponent implements OnInit {
 
   faTrash = faTrash;
   faEdit = faEdit
-  constructor() { }
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
-
 }

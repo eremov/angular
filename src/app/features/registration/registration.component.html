@@ -38,11 +38,11 @@
 
 
     <div class="submit">
-      <app-button buttonText="Registration"></app-button>
+      <app-button (click)="submitRegistrationData()" buttonText="Registration"></app-button>
     </div>
   </form>
 
   <div class="link-section">
-    <p>If you have an account you can <a href="#">Login</a></p>
+    <p>If you have an account you can <a class="link" (click)="routeToLoginPage()">Login</a></p>
   </div>
 </div>

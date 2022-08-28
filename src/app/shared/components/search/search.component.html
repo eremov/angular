@@ -1,4 +1,4 @@
-<form #searchForm="ngForm" class="search-form">
-  <input placeholder="{{placeHolder}}" class="search-input" #searchFraze>
-  <app-button (click)="sendSearchFraze(searchFraze.value)" [buttonText]="'Search'" class="search-button"></app-button>
-</form>
+<div class="search-form">
+  <input placeholder="{{placeHolder}}" class="search-input" [(ngModel)]="searchStr" >
+  <app-button (click)="onSearchClick()" [buttonText]="'Search'" class="search-button"></app-button>
+</div>

@@ -7,22 +7,26 @@ import {CoursesModule} from "./features/courses/courses.module";
 import {SharedModule} from "./shared/shared.module";
 import {LoginModule} from "./features/login/login.module";
 import {RegistrationModule} from "./features/registration/registration.module";
-import { EditPageComponent } from './features/edit-page/edit-page.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {TokenInterceptor} from "./auth/interceptors/token.interceptor";
+import {CourseModule} from "./features/course/course.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditPageComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CoursesModule,
+    CourseModule,
     SharedModule,
     LoginModule,
     RegistrationModule
   ],
-  providers: [],
+  providers: [Window, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
