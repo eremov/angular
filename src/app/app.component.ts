@@ -52,6 +52,6 @@ export class AppComponent implements OnInit {
   }
 
   redirectToNewCoursePage() {
-    this.router.navigate(['/courses/add']);
+    this.router.navigate(['/course/add']);
   }
 }
