@@ -27,7 +27,7 @@ import {effects, reducers} from "./store";
     SharedModule,
     LoginModule,
     RegistrationModule,
-    StoreModule.forRoot( reducers),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
   ],
   providers: [Window, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
