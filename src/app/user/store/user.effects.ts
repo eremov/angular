@@ -6,7 +6,7 @@ import {catchError, map, mergeMap, of, tap} from "rxjs";
 
 @Injectable()
 export class UserEffects {
-  getCurrentUser = createEffect(
+  getCurrentUser$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(requestCurrentUser),
