@@ -10,6 +10,9 @@ import {RegistrationModule} from "./features/registration/registration.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./auth/interceptors/token.interceptor";
 import {CourseModule} from "./features/course/course.module";
+import {StoreModule} from "@ngrx/store";
+import {EffectsModule} from "@ngrx/effects";
+import {effects, reducers} from "./store";
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import {CourseModule} from "./features/course/course.module";
     CourseModule,
     SharedModule,
     LoginModule,
-    RegistrationModule
+    RegistrationModule,
+    StoreModule.forRoot( reducers),
+    EffectsModule.forRoot(effects),
   ],
   providers: [Window, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
 

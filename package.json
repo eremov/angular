@@ -23,7 +23,10 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@ngrx/store": "latest",
+    "@ngrx/effects": "latest",
+    "@ngrx/store-devtools": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.0",
