@@ -8,8 +8,8 @@ import {Author} from "../../services/author";
 @Injectable()
 export class AuthorsStateFacade {
 
-  public addedAuthor$ = this.store.select(getAuthors);
-  public authors$ = this.store.select(getAddedAuthors);
+  public addedAuthor$ = this.store.select(getAddedAuthors);
+  public authors$ = this.store.select(getAuthors);
 
   constructor(private store: Store<AuthorsState>) {
   }
