@@ -18,7 +18,7 @@ export class AuthorsService {
   }
 
   addAuthor(authorName: string) {
-    this.http.post<any>('http://localhost:4000/authors/add', {name: authorName})
+    return this.http.post<any>('http://localhost:4000/authors/add', {name: authorName})
   }
 }
 

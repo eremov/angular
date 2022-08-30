@@ -18,16 +18,13 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    this.http.post<any>('http://localhost:4000/login',
+    return this.http.post<any>('http://localhost:4000/login',
       {
         "name": null,
         "email": email,
         "password": password
       }
-    ).subscribe(data => {
-      this.sessionStorageService.setToken(data.result);
-      this.isAuthorized$$.next(true);
-    })
+    )
   }
 
   register(name: string, email: string, password: string) {
